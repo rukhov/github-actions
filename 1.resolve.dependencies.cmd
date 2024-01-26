@@ -5,10 +5,8 @@ conan profile detect --force
 
 set CUR_DIR=%CD%
 
-conan install . --output-folder=%CUR_DIR%/build/conan --build=missing -s build_type=RelWithDebInfo
+::conan install . --output-folder=%CUR_DIR%\build\conan --build=missing -s build_type=RelWithDebInfo
+::if %errorlevel% neq 0 exit /b %errorlevel%
 
-if %errorlevel% neq 0 exit /b %errorlevel%
-
-conan install . --output-folder=%CUR_DIR%/build/conan --build=missing -s build_type=Debug 
-
+conan install . --output-folder=%CUR_DIR%\build\conan --build=missing -s build_type=Debug 
 if %errorlevel% neq 0 exit /b %errorlevel%
