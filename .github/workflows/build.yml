@@ -17,8 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Resolve dependencies
+        run: .\1.resolve.dependencies.cmd
+
       - name: Generate solution
-        run: .\1.generate.solution.cmd
+        run: .\2.generate.solution.cmd
 
       - name: Build solution
-        run: .\2.build.all.cmd
+        run: .\3.build.all.cmd
