@@ -1,0 +1,47 @@
+
+name: Build the project
+run-name: Build the project on behalf of ${{ github.actor }}
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - dev
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+
+      - name: Install Conan
+        run: pip3 install 'conan>=2.0.0'
+
+      - name: Conan version
+        run: conan --version
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache conan database
+        id: cache-conan
+        uses: actions/cache@v3
+        env: 
+          cache-name: cache-conan-database
+        with:
+          path: ~/.conan2
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/conanfile.py') }}
+
+      - if: ${{ steps.cache-conan.outputs.cache-hit != 'true' }}
+        name: List the state of conan local cache
+        continue-on-error: true
+        run: conan list *
+
+      - name: Resolve dependencies
+        run: .\1.resolve.dependencies.cmd
+
+      - name: Generate solution
+        run: .\2.generate.solution.cmd
+
+      - name: Build solution
+        run: .\3.build.all.cmd
