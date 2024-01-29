@@ -15,7 +15,7 @@ jobs:
     steps:
 
       - name: Install Conan
-        run: pip3 install conan 2.0
+        run: pip3 install 'conan>=2.0.0'
 
       - name: Conan version
         run: conan --version
