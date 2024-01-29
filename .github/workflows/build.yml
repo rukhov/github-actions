@@ -15,13 +15,27 @@ jobs:
     steps:
 
       - name: Install Conan
-        run: pip3 install conan
+        run: pip3 install conan 2.0.14
 
       - name: Conan version
         run: conan --version
 
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Cache conan database
+        id: cache-conan
+        uses: actions/cache@v3
+        env: 
+          cache-name: cache-conan-database
+        with:
+          path: ~/.conan2
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/conanfile.py') }}
+
+      - if: ${{ steps.cache-conan.outputs.cache-hit != 'true' }}
+        name: List the state of conan local cache
+        continue-on-error: true
+        run: conan list *
 
       - name: Resolve dependencies
         run: .\1.resolve.dependencies.cmd
