@@ -5,7 +5,7 @@ runs:
     - name: Step one
       shell: pwsh
       run: |
-        echo "Tag:          ${{ github.ref }}" >> >> ./install/${{ matrix.buildtype }}/${{ matrix.config }}/build_info.txt
+        echo "Tag:          ${{ github.ref }}" >> ./install/${{ matrix.buildtype }}/${{ matrix.config }}/build_info.txt
         echo "Commit id:    ${{ github.event.pull_request.head.sha }}" >> ./install/${{ matrix.buildtype }}/${{ matrix.config }}/build_info.txt
         echo "Build number: ${{ github.run_number }}" >> ./install/${{ matrix.buildtype }}/${{ matrix.config }}/build_info.txt
       
