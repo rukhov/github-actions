@@ -6,5 +6,5 @@ runs:
       shell: pwsh
       run: |
         echo "Build number: ${{ github.run_number }}" >> ./install/build_info.txt
-        echo "git head sha: ${{ github.event.pull_request.head.sha }}"" >> ./install/build_info.txt
+        echo "git head sha: ${{ github.event.pull_request.head.sha }}" >> ./install/build_info.txt
       
