@@ -5,6 +5,6 @@ runs:
     - name: Step one
       shell: pwsh
       run: |
-        echo Build number: ${{ github.run_number }} >> ./install/${{ matrix.buildtype }}/${{ matrix.config }}/build_info.txt
-        echo git head sha: ${{ github.event.pull_request.head.sha }} >> ./install/${{ matrix.buildtype }}/${{ matrix.config }}/build_info.txt
+        echo "Build number: ${{ github.run_number }}" >> ./install/${{ matrix.buildtype }}/${{ matrix.config }}/build_info.txt
+        echo "git head sha: ${{ github.event.pull_request.head.sha }}" >> ./install/${{ matrix.buildtype }}/${{ matrix.config }}/build_info.txt
       
