@@ -11,14 +11,25 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
+    strategy:
+      matrix:
+        config: [Debug, RelWithDebInfo]
+        include:
+          - arch: x64
+          - buildtype: amd64
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate solution
-        run: .\1.generate.solution.cmd
+      - name: Install solution
+        run: mkdir ./install/${{ matrix.buildtype }}/${{ matrix.config }}
 
-      - name: Build solution
-        run: .\2.build.all.cmd
+      - name: Save build info
+        uses: ./.github/actions/save_build_info
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: "ActionsTest_${{ matrix.arch }}_${{ matrix.config }}_${{ github.run_number }}"
+          path: "./install/${{ matrix.buildtype }}/${{ matrix.config }}/"
+          if-no-files-found: error
