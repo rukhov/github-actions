@@ -1,4 +1,4 @@
-name: 'Save build info'
+name: 'Build assets'
 runs:
   using: "composite"
   steps:
