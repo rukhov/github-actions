@@ -1,0 +1,16 @@
+name: Build assets
+on:
+  workflow_call:
+    inputs:
+      is_release:
+        type: boolean
+        required: false
+        default: false
+jobs:
+  build_assets:
+    runs-on: windows-latest
+    steps:
+  
+      - name: Do notthing
+        run: |
+          echo "inputs.is_release=${{ inputs.is_release }}"
