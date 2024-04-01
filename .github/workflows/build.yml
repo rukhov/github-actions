@@ -18,15 +18,15 @@ jobs:
         id: define_build_type
         run: |
           if( 'refs/heads/release/0.0.0' -match 'refs/heads/release/\d+.\d+.\d+' ) { 
-            'is_release=True' | Out-File -FilePath $Env:GITHUB_OUTPUT -Encoding utf8 -Append 
+            'is_release=${{ true }}' | Out-File -FilePath $Env:GITHUB_OUTPUT -Encoding utf8 -Append 
           } 
           else { 
-            'is_release=False' | Out-File -FilePath $Env:GITHUB_OUTPUT -Encoding utf8 -Append 
+            'is_release=${{ false }}' | Out-File -FilePath $Env:GITHUB_OUTPUT -Encoding utf8 -Append 
           }
 
   build_assets:
     needs: prepare_params
     uses: ./.github/workflows/shared_workflow.yml
     with: 
-      is_release: needs.prepare_params.outputs.is_release
+      is_release: ${{ needs.prepare_params.outputs.is_release }}
         
