@@ -5,6 +5,9 @@ on:
       is_release:
         type: boolean
         required: true
+      is_not_release:
+        type: boolean
+        required: true
 jobs:
   build_assets:
     runs-on: windows-latest
@@ -13,3 +16,4 @@ jobs:
       - name: Do notthing
         run: |
           echo "inputs.is_release=${{ inputs.is_release }}"
+          echo "inputs.is_not_release=${{ inputs.is_not_release }}"
