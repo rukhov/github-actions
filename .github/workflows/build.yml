@@ -28,5 +28,5 @@ jobs:
     needs: prepare_params
     uses: ./.github/workflows/shared_workflow.yml
     with: 
-      is_release: ${{ needs.prepare_params.outputs.is_release }}
+      is_release: needs.prepare_params.outputs.is_release
         
