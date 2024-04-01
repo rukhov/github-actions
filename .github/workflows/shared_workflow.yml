@@ -3,9 +3,8 @@ on:
   workflow_call:
     inputs:
       is_release:
-        type: boolean
-        required: false
-        default: false
+        type: string
+        required: true
 jobs:
   build_assets:
     runs-on: windows-latest
