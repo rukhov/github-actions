@@ -17,7 +17,7 @@ jobs:
       - name: Define build type
         id: define_build_type
         run: |
-          'is_release=${{ true }}' | Out-File -FilePath $Env:GITHUB_OUTPUT
+          "is_release='${{ true }}'" | Out-File -FilePath $Env:GITHUB_OUTPUT
 
   build_assets:
     needs: prepare_params
