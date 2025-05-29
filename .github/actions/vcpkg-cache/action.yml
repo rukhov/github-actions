@@ -36,19 +36,19 @@ runs:
 
         set VCPKG_DIR=${{ inputs.vcpkg-root-path }}
 
-        echo "VCPKG_DIR=%VCPKG_DIR%"
+        echo "VCPKG_DIR=$VCPKG_DIR"
 
         echo "Vcpkg is installed at: %VCPKG_INSTALLATION_ROOT%"
-        echo "VCPKG_INSTALLATION_ROOT=%VCPKG_DIR%" >> %GITHUB_ENV%
-        echo "VCPKG_DEFAULT_BINARY_CACHE=%VCPKG_DIR%\.cache" >> %GITHUB_ENV%
-        echo "PATH=%VCPKG_DIR%;%PATH%" >> %GITHUB_ENV%
+        echo "VCPKG_INSTALLATION_ROOT=$VCPKG_DIR" >> $GITHUB_ENV
+        echo "VCPKG_DEFAULT_BINARY_CACHE=$VCPKG_DIR\.cache" >> $GITHUB_ENV
+        echo "PATH=$VCPKG_DIR;$PATH" >> $GITHUB_ENV
         where vcpkg
 
         git clone https://github.com/microsoft/vcpkg.git
         cd vcpkg
         .\bootstrap-vcpkg.bat
-        mkdir %VCPKG_DIR%\.cache
-        cd %VCPKG_DIR%\.cache
+        mkdir $VCPKG_DIR\.cache
+        cd $VCPKG_DIR\.cache
         dir
 
     - name: Env
