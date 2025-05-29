@@ -66,8 +66,6 @@ jobs:
         with:
           path: |
             ${{ env.VCPKG_INSTALLATION_ROOT }}/.cache
-            # ${{ env.VCPKG_INSTALLATION_ROOT }}/packages
-            # ${{ env.VCPKG_INSTALLATION_ROOT }}/downloads
           key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
           restore-keys: |
             ${{ runner.os }}-vcpkg-
