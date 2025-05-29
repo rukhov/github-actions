@@ -70,17 +70,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-vcpkg-
 
-      - name: vcpkg install
-        #if: steps.cache-vcpkg.outputs.cache-hit != 'true'
-        run: |
-          echo "======================="
-          which vcpkg
-          echo "======================="
-          echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
-          echo "VCPKG_DEFAULT_BINARY_CACHE is: $VCPKG_DEFAULT_BINARY_CACHE"
-          pwd
-          $VCPKG_INSTALLATION_ROOT/vcpkg install
-
       - name: Configure project
         run: |
           cmake --preset=${{ matrix.platform }}-rel -S ./ -B ./build
