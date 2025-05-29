@@ -46,14 +46,18 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            ${{ env.VCPKG_INSTALLATION_ROOT }}/installed
             ${{ env.VCPKG_INSTALLATION_ROOT }}/downloads
+            ${{ env.VCPKG_INSTALLATION_ROOT }}/packages
+            ${ env.VCPKG_INSTALLATION_ROOT }/downloads
+            ${ env.VCPKG_INSTALLATION_ROOT }/packages
           key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
           restore-keys: |
             ${{ runner.os }}-vcpkg-
 
       - name: vcpkg install
         run: |
+          echo "Vcpkg is installed at: ${{ env.VCPKG_INSTALLATION_ROOT }}"
+          echo "Vcpkg is installed at: ${ env.VCPKG_INSTALLATION_ROOT }"
           vcpkg install
 
       - name: Configure project
