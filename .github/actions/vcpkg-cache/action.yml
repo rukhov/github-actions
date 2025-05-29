@@ -8,6 +8,7 @@ runs:
   using: "composite"
   steps:
     - name: Install vcpkg
+      shell: bash
       run: |
         echo "Installing vcpkg"
 
@@ -22,6 +23,7 @@ runs:
         mkdir ${{ inputs.vcpkg-root-path }}/.cache
 
     - name: Env
+      shell: bash
       run: |
         echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
         #echo "======================"
@@ -29,6 +31,7 @@ runs:
 
     # Cache vcpkg
     - name: Cache vcpkg
+      shell: bash
       id: cache-vcpkg
       uses: actions/cache@v4
       with:
