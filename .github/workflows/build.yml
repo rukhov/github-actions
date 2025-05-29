@@ -48,6 +48,7 @@ jobs:
         run: |
           echo "VCPKG_INSTALLATION_ROOT=${{ env.VCPKG_INSTALLATION_ROOT }}" >> $GITHUB_ENV
           echo "PATH=${{ env.VCPKG_INSTALLATION_ROOT }}:$PATH" >> $GITHUB_ENV
+          which vcpkg
 
       - name: Env
         env:
@@ -75,10 +76,9 @@ jobs:
       - name: vcpkg install
         if: steps.cache-vcpkg.outputs.cache-hit != 'true'
         run: |
+          which vcpkg
           echo "Vcpkg is installed at: ${{ env.PATH }}"
           echo "Vcpkg is installed at: ${{ env.VCPKG_INSTALLATION_ROOT }}"
-          echo "Vcpkg is installed at: ${{ env.VCPKG_ROOT }}"
-          echo "Vcpkg is installed at: $(VCPKG_INSTALLATION_ROOT)"
           echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
           vcpkg install
 
