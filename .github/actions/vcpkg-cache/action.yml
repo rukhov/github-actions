@@ -12,6 +12,15 @@ runs:
         VCPKG_DIR="${VCPKG_DIR//\\//}" # Convert backslashes to forward slashes for compatibility
         echo "after VCPKG_DIR=$VCPKG_DIR"
 
+        echo "Runner OS is: $RUNNER_OS"
+        if [[ "$RUNNER_OS" == "Linux" ]]; then
+          echo "Running on Linux"
+        elif [[ "$RUNNER_OS" == "Windows" ]]; then
+          echo "Running on Windows"
+          VCPKG_DIR="${VCPKG_DIR/:/}"
+          VCPKG_DIR="/${VCPKG_DIR}"
+        fi
+
         echo "VCPKG_INSTALLATION_ROOT=$VCPKG_DIR" >> $GITHUB_ENV
         echo "PATH=$VCPKG_DIR:$PATH" >> $GITHUB_ENV
         echo "VCPKG_DEFAULT_BINARY_CACHE=$VCPKG_DIR/.cache" >> $GITHUB_ENV
