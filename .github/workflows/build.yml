@@ -38,7 +38,7 @@ jobs:
 
       - name: Env
         env:
-          VCPKG_ROOT: vcpkg-root-${{ github.env.VCPKG_INSTALLATION_ROOT }}
+          VCPKG_ROOT: vcpkg-root-${{ github.env }}
         run: |
           echo "Vcpkg is installed at: $VCPKG_ROOT"
           echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
