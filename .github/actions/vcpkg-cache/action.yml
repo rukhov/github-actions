@@ -55,8 +55,8 @@ runs:
       run: |
         echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
         echo "VCPKG_DEFAULT_BINARY_CACHE: $VCPKG_DEFAULT_BINARY_CACHE"
-        #mkdir "$VCPKG_DEFAULT_BINARY_CACHE"
-        cd "$VCPKG_DEFAULT_BINARY_CACHE"
+        #mkdir $VCPKG_DEFAULT_BINARY_CACHE
+        cd $VCPKG_DEFAULT_BINARY_CACHE
         ls
         echo "======================"
         env|sort
