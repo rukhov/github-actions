@@ -1,0 +1,10 @@
+name: 'Build assets'
+runs:
+  using: "composite"
+  steps:
+    - name: Step one
+      shell: pwsh
+      run: |
+        echo "Commit id:    ${{ github.event.pull_request.head.sha }}" >> ./install/${{ matrix.buildtype }}/${{ matrix.config }}/build_info.txt
+        echo "Build number: ${{ github.run_number }}" >> ./install/${{ matrix.buildtype }}/${{ matrix.config }}/build_info.txt
+      
