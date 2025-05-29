@@ -36,6 +36,9 @@ jobs:
         run: |
           #pip3 install opencv-python pytest
 
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Install vcpkg
         run: |
           echo "Installing vcpkg"
@@ -44,9 +47,6 @@ jobs:
           ./bootstrap-vcpkg.sh --disableMetrics
           pwd
           ls
-
-      - name: Checkout
-        uses: actions/checkout@v4
 
       - name: Set VCPKG_INSTALLATION_ROOT
         run: |
