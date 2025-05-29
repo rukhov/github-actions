@@ -1,25 +1,22 @@
 name: 'Setup vcpkg cache'
+inputs:
+  vcpkg-root-path: 
+    description: 'Path where to install vcpkg'
+    required: true
+    type: string
 runs:
   using: "composite"
   steps:
-    - name: Install vcpkg
+    - name: Install vcpkg Linux
       shell: bash
+      if: runner.os == 'Linux'
       run: |
         echo "Installing vcpkg"
 
-        VCPKG_DIR=$GITHUB_WORKSPACE/vcpkg
+        VCPKG_DIR=${{ inputs.vcpkg-root-path }}/vcpkg
         echo "before VCPKG_DIR=$VCPKG_DIR"
         VCPKG_DIR="${VCPKG_DIR//\\//}" # Convert backslashes to forward slashes for compatibility
         echo "after VCPKG_DIR=$VCPKG_DIR"
-
-        echo "Runner OS is: $RUNNER_OS"
-        if [[ "$RUNNER_OS" == "Linux" ]]; then
-          echo "Running on Linux"
-        elif [[ "$RUNNER_OS" == "Windows" ]]; then
-          echo "Running on Windows"
-          VCPKG_DIR="${VCPKG_DIR/:/}"
-          VCPKG_DIR="/${VCPKG_DIR}"
-        fi
 
         echo "VCPKG_INSTALLATION_ROOT=$VCPKG_DIR" >> $GITHUB_ENV
         echo "PATH=$VCPKG_DIR:$PATH" >> $GITHUB_ENV
@@ -30,6 +27,24 @@ runs:
         cd vcpkg
         ./bootstrap-vcpkg.sh --disableMetrics
         mkdir $VCPKG_DIR/.cache
+
+    - name: cmdll vcpkg Windows
+      shell: cmd
+      if: runner.os == 'Windows'
+      run: |
+        echo "Installing vcpkg"
+
+        VCPKG_DIR=%GITHUB_WORKSPACE%/vcpkg
+
+        echo "VCPKG_INSTALLATION_ROOT=%VCPKG_DIR%" >> %GITHUB_ENV%
+        echo "PATH=%VCPKG_DIR%;%PATH%" >> %GITHUB_ENV%
+        echo "VCPKG_DEFAULT_BINARY_CACHE=%VCPKG_DIR%\.cache" >> %GITHUB_ENV%
+        where vcpkg
+
+        git clone https://github.com/microsoft/vcpkg.git
+        cd vcpkg
+        .\bootstrap-vcpkg.bat --disableMetrics
+        mkdir %VCPKG_DIR%\.cache
 
     - name: Env
       shell: bash
