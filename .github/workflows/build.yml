@@ -59,8 +59,6 @@ jobs:
           echo "Vcpkg is installed at: ${{ env.PATH }}"
           echo "Vcpkg is installed at: ${{ env.VCPKG_INSTALLATION_ROOT }}"
           echo "Vcpkg is installed at: ${{ env.VCPKG_ROOT }}"
-          echo "Vcpkg is installed at: ${{ VCPKG_INSTALLATION_ROOT }}"
-          echo "Vcpkg is installed at: ${{ VCPKG_ROOT }}"
           vcpkg install
 
       - name: Configure project
