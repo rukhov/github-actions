@@ -43,6 +43,7 @@ jobs:
           pwd
           cd vcpkg
           ./bootstrap-vcpkg.sh --disableMetrics
+          ls
 
       - name: Set VCPKG_INSTALLATION_ROOT
         run: |
