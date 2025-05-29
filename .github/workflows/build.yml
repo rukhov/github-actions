@@ -18,10 +18,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest]
         include:
           - os: ubuntu-latest
             platform: linux
+            arch: x64
+          - os: windows-latest
+            platform: windows
             arch: x64
 
     steps:
