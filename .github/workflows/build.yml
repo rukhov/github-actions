@@ -71,7 +71,7 @@ jobs:
             ${{ runner.os }}-vcpkg-
 
       - name: vcpkg install
-        #if: steps.cache-vcpkg.outputs.cache-hit != 'true'
+        if: steps.cache-vcpkg.outputs.cache-hit != 'true'
         run: |
           echo "======================="
           echo "PATH is: $PATH"
