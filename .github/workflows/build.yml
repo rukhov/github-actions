@@ -35,6 +35,10 @@ jobs:
 
       - name: Env
         run: |
+          echo "Vcpkg is installed at: ${{ env.PATH }}"
+          echo "Vcpkg is installed at: ${{ env.ANDROID_HOME }}"
+          echo "Vcpkg is installed at: ${{ env.VCPKG_INSTALLATION_ROOT }}"
+          echo "======================"
           env|sort
 
       - name: Checkout
