@@ -45,6 +45,9 @@ jobs:
           pwd
           ls
 
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Set VCPKG_INSTALLATION_ROOT
         run: |
           echo "VCPKG_INSTALLATION_ROOT=${{ env.VCPKG_INSTALLATION_ROOT }}" >> $GITHUB_ENV
@@ -56,9 +59,6 @@ jobs:
           echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
           echo "======================"
           env|sort
-
-      - name: Checkout
-        uses: actions/checkout@v4
 
       # Cache vcpkg
       - name: Cache vcpkg
