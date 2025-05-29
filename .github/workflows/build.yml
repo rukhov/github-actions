@@ -45,8 +45,6 @@ jobs:
           git clone https://github.com/microsoft/vcpkg.git
           cd vcpkg
           ./bootstrap-vcpkg.sh --disableMetrics
-          pwd
-          ls
 
       - name: Set VCPKG_INSTALLATION_ROOT
         run: |
