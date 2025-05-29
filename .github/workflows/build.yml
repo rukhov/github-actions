@@ -74,7 +74,7 @@ jobs:
         #if: steps.cache-vcpkg.outputs.cache-hit != 'true'
         run: |
           echo "======================="
-          echo "PATH is: ${{ env.PATH }}"
+          echo "PATH is: $PATH"
           echo "======================="
           which vcpkg
           echo "======================="
