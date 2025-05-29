@@ -39,36 +39,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install vcpkg
-        run: |
-          echo "Installing vcpkg"
-
-          echo "VCPKG_INSTALLATION_ROOT=${{ env.VCPKG_INSTALLATION_ROOT }}" >> $GITHUB_ENV
-          echo "PATH=${{ env.VCPKG_INSTALLATION_ROOT }}:$PATH" >> $GITHUB_ENV
-          echo "VCPKG_DEFAULT_BINARY_CACHE=${{ env.VCPKG_INSTALLATION_ROOT }}/.cache" >> $GITHUB_ENV
-          which vcpkg
-
-          git clone https://github.com/microsoft/vcpkg.git
-          cd vcpkg
-          ./bootstrap-vcpkg.sh --disableMetrics
-          mkdir ${{ env.VCPKG_INSTALLATION_ROOT }}/.cache
-
-      - name: Env
-        run: |
-          echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
-          #echo "======================"
-          #env|sort
-
-      # Cache vcpkg
-      - name: Cache vcpkg
-        id: cache-vcpkg
-        uses: actions/cache@v4
+      - name: Setup cache
+        uses: ./.github/actions/vcpkg-cache
         with:
-          path: |
-            ${{ env.VCPKG_INSTALLATION_ROOT }}/.cache
-          key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
-          restore-keys: |
-            ${{ runner.os }}-vcpkg-
+          vcpkg-root-path: ${{ env.VCPKG_INSTALLATION_ROOT }}
+
 
       - name: Configure project
         run: |
