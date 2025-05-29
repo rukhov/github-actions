@@ -51,6 +51,7 @@ jobs:
           git clone https://github.com/microsoft/vcpkg.git
           cd vcpkg
           ./bootstrap-vcpkg.sh --disableMetrics
+          mkdir ${{ env.VCPKG_INSTALLATION_ROOT }}/.cache
 
       - name: Env
         run: |
