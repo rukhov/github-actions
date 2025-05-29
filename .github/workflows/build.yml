@@ -39,7 +39,8 @@ jobs:
       - name: Install vcpkg
         run: |
           echo "Installing vcpkg"
-          git clone git@github.com:microsoft/vcpkg.git
+          git clone https://github.com/microsoft/vcpkg.git
+          pwd
           cd vcpkg
           ./bootstrap-vcpkg.sh --disableMetrics
 
