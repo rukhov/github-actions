@@ -44,7 +44,6 @@ jobs:
         with:
           vcpkg-root-path: ${{ env.VCPKG_INSTALLATION_ROOT }}
 
-
       - name: Configure project
         run: |
           cmake --preset=${{ matrix.platform }}-rel -S ./ -B ./build
