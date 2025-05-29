@@ -50,7 +50,7 @@ runs:
         mkdir "%VCPKG_DIR%\.cache"
 
     - name: Env
-      #if: False
+      if: False
       shell: bash
       run: |
         echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
