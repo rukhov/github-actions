@@ -12,15 +12,18 @@ runs:
       run: |
         echo "Installing vcpkg"
 
-        echo "VCPKG_INSTALLATION_ROOT=${{ inputs.vcpkg-root-path }}" >> $GITHUB_ENV
-        echo "PATH=${{ inputs.vcpkg-root-path }}:$PATH" >> $GITHUB_ENV
-        echo "VCPKG_DEFAULT_BINARY_CACHE=${{ inputs.vcpkg-root-path }}/.cache" >> $GITHUB_ENV
+        VCPKG_DIR=${{ inputs.vcpkg-root-path }}
+        VCPKG_DIR=${VCPKG_DIR//\\//}
+
+        echo "VCPKG_INSTALLATION_ROOT=$VCPKG_DIR" >> $GITHUB_ENV
+        echo "PATH=$VCPKG_DIR:$PATH" >> $GITHUB_ENV
+        echo "VCPKG_DEFAULT_BINARY_CACHE=$VCPKG_DIR/.cache" >> $GITHUB_ENV
         which vcpkg
 
         git clone https://github.com/microsoft/vcpkg.git
         cd vcpkg
         ./bootstrap-vcpkg.sh --disableMetrics
-        mkdir ${{ inputs.vcpkg-root-path }}/.cache
+        mkdir VCPKG_DIR/.cache
 
     - name: Env
       shell: bash
