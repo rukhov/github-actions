@@ -41,30 +41,13 @@ runs:
         echo "Vcpkg is installed at: %VCPKG_INSTALLATION_ROOT%"
         echo "VCPKG_INSTALLATION_ROOT=%VCPKG_DIR%" >> %GITHUB_ENV%
         echo "VCPKG_DEFAULT_BINARY_CACHE=%VCPKG_DIR%\.cache" >> %GITHUB_ENV%
-        ::set-env name=VCPKG_DEFAULT_BINARY_CACHE %VCPKG_DIR%\.cache
         echo "PATH=%VCPKG_DIR%;%PATH%" >> %GITHUB_ENV%
         where vcpkg
 
         git clone https://github.com/microsoft/vcpkg.git
         cd vcpkg
         call .\bootstrap-vcpkg.bat
-        echo "-------------------------------+++++++++"
-        echo "VCPKG_DIR=%VCPKG_DIR%"
         mkdir "%VCPKG_DIR%\.cache"
-        cd %VCPKG_DIR%\.cache
-        dir
-
-    - name: Env
-      if: False
-      shell: bash
-      run: |
-        echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
-        echo "VCPKG_DEFAULT_BINARY_CACHE: $VCPKG_DEFAULT_BINARY_CACHE"
-        #mkdir "$VCPKG_DEFAULT_BINARY_CACHE"
-        cd "$VCPKG_DEFAULT_BINARY_CACHE"
-        ls
-        #echo "======================"
-        #env|sort
 
     # Cache vcpkg
     - name: Cache vcpkg
