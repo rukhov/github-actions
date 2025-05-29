@@ -36,6 +36,8 @@ runs:
 
         set VCPKG_DIR=%GITHUB_WORKSPACE%/vcpkg
 
+        echo "VCPKG_DIR=%VCPKG_DIR%"
+
         echo "VCPKG_INSTALLATION_ROOT=%VCPKG_DIR%" >> %GITHUB_ENV%
         echo "PATH=%VCPKG_DIR%;%PATH%" >> %GITHUB_ENV%
         echo "VCPKG_DEFAULT_BINARY_CACHE=%VCPKG_DIR%\.cache" >> %GITHUB_ENV%
@@ -45,6 +47,8 @@ runs:
         cd vcpkg
         .\bootstrap-vcpkg.bat
         mkdir %VCPKG_DIR%\.cache
+        cd %VCPKG_DIR%\.cache
+        dir
 
     - name: Env
       shell: bash
