@@ -74,8 +74,6 @@ jobs:
         if: steps.cache-vcpkg.outputs.cache-hit != 'true'
         run: |
           echo "======================="
-          echo "PATH is: $PATH"
-          echo "======================="
           which vcpkg
           echo "======================="
           echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
