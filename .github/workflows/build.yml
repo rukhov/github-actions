@@ -12,6 +12,9 @@ jobs:
 
   build:
 
+    env:
+      VCPKG_INSTALLATION_ROOT: ${{ github.workspace }}/vcpkg
+
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -33,9 +36,16 @@ jobs:
         run: |
           #pip3 install opencv-python pytest
 
+      - name: Install vcpkg
+        run: |
+          echo "Installing vcpkg"
+          git clone git@github.com:microsoft/vcpkg.git
+          cd vcpkg
+          ./bootstrap-vcpkg.sh --disableMetrics
+
       - name: Set VCPKG_INSTALLATION_ROOT
         run: |
-          #echo "VCPKG_INSTALLATION_ROOT=$HOME/vcpkg" >> $GITHUB_ENV
+          echo "VCPKG_INSTALLATION_ROOT=${{ env.VCPKG_INSTALLATION_ROOT }}" >> $GITHUB_ENV
 
       - name: Env
         env:
