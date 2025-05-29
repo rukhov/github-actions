@@ -35,11 +35,8 @@ jobs:
 
       - name: Env
         env:
-          VCPKG_ROOT: hello
+          VCPKG_ROOT: vcpkg-root-${{ env.VCPKG_INSTALLATION_ROOT || process.env.VCPKG_INSTALLATION_ROOT }}
         run: |
-          echo "Vcpkg is installed at: ${{ env.PATH }}"
-          echo "Vcpkg is installed at: ${{ env.ANDROID_HOME }}"
-          echo "Vcpkg is installed at: ${{ env.VCPKG_INSTALLATION_ROOT }}"
           echo "Vcpkg is installed at: $VCPKG_ROOT"
           echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
           echo "======================"
