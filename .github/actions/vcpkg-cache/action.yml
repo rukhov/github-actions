@@ -4,8 +4,6 @@ inputs:
     description: 'Path where to install vcpkg'
     required: true
     type: string
-env:
-  VCPKG_ROOT: ${{ github.workspace }}/vcpkg
 runs:
   using: "composite"
   steps:
@@ -14,7 +12,7 @@ runs:
       run: |
         echo "Installing vcpkg"
 
-        VCPKG_DIR=${{ env.VCPKG_ROOT }}
+        VCPKG_DIR=$GITHUB_WORKSPACE/vcpkg
         echo "before VCPKG_DIR=$VCPKG_DIR"
         VCPKG_DIR="${VCPKG_DIR//\\//}" # Convert backslashes to forward slashes for compatibility
         echo "after VCPKG_DIR=$VCPKG_DIR"
