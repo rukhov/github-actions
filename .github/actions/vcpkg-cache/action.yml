@@ -13,7 +13,7 @@ runs:
       run: |
         echo "Installing vcpkg"
 
-        VCPKG_DIR=${{ inputs.vcpkg-root-path }}/vcpkg
+        VCPKG_DIR=${{ inputs.vcpkg-root-path }}
         echo "before VCPKG_DIR=$VCPKG_DIR"
         VCPKG_DIR="${VCPKG_DIR//\\//}" # Convert backslashes to forward slashes for compatibility
         echo "after VCPKG_DIR=$VCPKG_DIR"
