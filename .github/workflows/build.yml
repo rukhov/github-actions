@@ -40,9 +40,9 @@ jobs:
         run: |
           echo "Installing vcpkg"
           git clone https://github.com/microsoft/vcpkg.git
-          pwd
           cd vcpkg
           ./bootstrap-vcpkg.sh --disableMetrics
+          pwd
           ls
 
       - name: Set VCPKG_INSTALLATION_ROOT
@@ -78,6 +78,7 @@ jobs:
           echo "PATH is: ${{ env.PATH }}"
           echo "Vcpkg is installed at: ${{ env.VCPKG_INSTALLATION_ROOT }}"
           echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
+          pwd
           $VCPKG_INSTALLATION_ROOT/vcpkg install
 
       - name: Configure project
