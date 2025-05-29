@@ -76,11 +76,10 @@ jobs:
       - name: vcpkg install
         if: steps.cache-vcpkg.outputs.cache-hit != 'true'
         run: |
-          which vcpkg
-          echo "Vcpkg is installed at: ${{ env.PATH }}"
+          echo "PATH is: ${{ env.PATH }}"
           echo "Vcpkg is installed at: ${{ env.VCPKG_INSTALLATION_ROOT }}"
           echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
-          vcpkg install
+          $VCPKG_INSTALLATION_ROOT/vcpkg install
 
       - name: Configure project
         run: |
