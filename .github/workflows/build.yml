@@ -56,7 +56,7 @@ jobs:
       - name: Env
         run: |
           echo "Vcpkg is installed at: $VCPKG_INSTALLATION_ROOT"
-          echo "======================"
+          #echo "======================"
           #env|sort
 
       # Cache vcpkg
