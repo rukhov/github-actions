@@ -34,7 +34,7 @@ jobs:
           #pip3 install opencv-python pytest
 
       - name: Set VCPKG_INSTALLATION_ROOT
-        run: echo "VCPKG_INSTALLATION_ROOT=$HOME/vcpkg" >> $GITHUB_ENV
+        run: #echo "VCPKG_INSTALLATION_ROOT=$HOME/vcpkg" >> $GITHUB_ENV
 
       - name: Env
         env:
@@ -63,6 +63,7 @@ jobs:
             ${{ runner.os }}-vcpkg-
 
       - name: vcpkg install
+        if: steps.cache-vcpkg.outputs.cache-hit != 'true'
         run: |
           echo "Vcpkg is installed at: ${{ env.PATH }}"
           echo "Vcpkg is installed at: ${{ env.VCPKG_INSTALLATION_ROOT }}"
