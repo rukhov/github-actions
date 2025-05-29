@@ -31,7 +31,6 @@ runs:
 
     # Cache vcpkg
     - name: Cache vcpkg
-      shell: bash
       id: cache-vcpkg
       uses: actions/cache@v4
       with:
