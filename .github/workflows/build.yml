@@ -38,14 +38,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Expose GitHub Runtime
-        uses: crazy-max/ghaction-github-runtime@v3
-
-      - name: Env
-        run: |
-          # ACTIONS_RUNTIME_TOKEN, ACTIONS_RUNTIME_URL should be exposed
-          env|sort
-
       # Cache vcpkg
       - name: Cache vcpkg
         id: cache-vcpkg
