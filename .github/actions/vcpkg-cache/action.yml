@@ -34,7 +34,7 @@ runs:
       run: |
         echo "Installing vcpkg"
 
-        set VCPKG_DIR=%GITHUB_WORKSPACE%/vcpkg
+        set VCPKG_DIR=${{ inputs.vcpkg-root-path }}
 
         echo "VCPKG_DIR=%VCPKG_DIR%"
 
