@@ -8,12 +8,24 @@
             "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_INSTALLATION_ROOT}/scripts/buildsystems/vcpkg.cmake"
             }
+        },
+        {
+            "name": "windows-rel",
+            "generator": "Visual Studio 17 2022",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_INSTALLATION_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
         }
     ],
     "buildPresets": [
         {
             "name": "linux-rel",
             "configurePreset": "linux-rel"
+        },
+        {
+            "name": "windows-rel",
+            "configurePreset": "windows-rel"
         }
     ]
 }
