@@ -11,8 +11,6 @@ on:
 jobs:
 
   build:
-    env: 
-      VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
 
     runs-on: ${{ matrix.os }}
     strategy:
