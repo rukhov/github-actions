@@ -1,9 +1,4 @@
 name: 'Setup vcpkg cache'
-inputs:
-  vcpkg-root-path: 
-    description: 'Path where to install vcpkg'
-    required: true
-    type: string
 runs:
   using: "composite"
   steps:
