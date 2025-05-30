@@ -41,8 +41,6 @@ jobs:
 
       - name: Setup cache
         uses: ./.github/actions/vcpkg-cache
-        with:
-          vcpkg-root-path: '-'
 
       - name: Configure project
         run: |

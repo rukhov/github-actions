@@ -1,9 +1,4 @@
 name: 'Setup vcpkg cache'
-inputs:
-  vcpkg-root-path: 
-    description: 'Path where to install vcpkg'
-    required: true
-    type: string
 runs:
   using: "composite"
   steps:
@@ -64,8 +59,7 @@ runs:
       uses: actions/cache@v4
       with:
         enableCrossOsArchive: true
-        path: |
-          ${{ runner.temp }}/.vcpkg-cache
+        path: ${{ runner.temp }}/.vcpkg-cache
         key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
         restore-keys: |
           ${{ runner.os }}-vcpkg-
