@@ -12,9 +12,6 @@ jobs:
 
   build:
 
-    env:
-      VCPKG_INSTALLATION_ROOT: ${{ github.workspace }}/vcpkg
-
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -45,7 +42,7 @@ jobs:
       - name: Setup cache
         uses: ./.github/actions/vcpkg-cache
         with:
-          vcpkg-root-path: ${{ env.VCPKG_INSTALLATION_ROOT }}
+          vcpkg-root-path: '-'
 
       - name: Configure project
         run: |
