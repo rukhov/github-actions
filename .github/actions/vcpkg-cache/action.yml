@@ -23,6 +23,8 @@ runs:
         #cd vcpkg
         #./bootstrap-vcpkg.sh --disableMetrics
         mkdir -p $VCPKG_DIR
+        cd $VCPKG_DIR
+        ls
 
     - name: cmdll vcpkg Windows
       shell: cmd
@@ -41,6 +43,8 @@ runs:
         #cd vcpkg
         #call .\bootstrap-vcpkg.bat
         mkdir "%VCPKG_DIR%"
+        cd %VCPKG_DIR%
+        dir
 
     - name: Env
       if: False
