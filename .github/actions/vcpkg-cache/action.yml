@@ -65,7 +65,7 @@ runs:
       with:
         enableCrossOsArchive: true
         path: |
-          {{ runner.temp }}/.vcpkg-cache
+          ${{ runner.temp }}/.vcpkg-cache
         key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
         restore-keys: |
           ${{ runner.os }}-vcpkg-
